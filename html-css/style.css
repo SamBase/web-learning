@@ -1,27 +1,63 @@
 @import url("https://fonts.googleapis.com/css2?family=Overpass:wght@400;700&display=swap");
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --full-background-light: hsl(221, 84%, 84%);
+  --full-background: hsl(221, 84%, 64%);
+  --full-background-dark: hsl(221, 84%, 44%);
+  --card-background: hsl(0, 0%, 100%);
+  --card-shadow: hsl(0, 0%, 0%);
+  --submit-button: rgb(87, 117, 240);
+
+}
+
 body {
   font-family: "Overpass", sans-serif;
-  background-color: rgb(144, 89, 89);
+  background-image: linear-gradient(to top left, var(--full-background-light), var(--full-background),var(--full-background-dark));
+  /* background-color: var(--full-background); */
   display: grid;
-  grid-template-columns: auto auto auto;
-  grid-template-rows: 10% auto;
+  grid-template-columns: 10% 3fr 1fr 10%;
+  grid-template-rows: 10% 80% 10%;
 
   grid-template-areas:
-    ". . ."
-    ". main .";
+    ". . . ."
+    ". description logInCard ."
+    ". . . .";
   height: 100vh;
 }
 
+.description {
+  grid-area: description;
+  height: 100hv;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .mainContent {
-  grid-area: main;
+  grid-area: logInCard;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 form {
-  background-color: rgb(132, 121, 121);
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-template-rows: auto auto auto auto;
+  background-color: var(--card-background);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  /* align-items: s; */
+  height: 50%;
+  border: 10px solid var(--card-background);
+  box-sizing: border-box;
+  border-radius: 1em;
+  box-shadow: 5px 10px 10px var(--card-shadow);
 }
 
 .title {
@@ -30,6 +66,31 @@ form {
 }
 
 .submitButtom {
-  grid-column-start: span 2;
-  justify-self: center;
+  width: 100%;
+}
+.submitButtom>input{
+  background-color: var(--submit-button);
+  width: 100%;
+}
+
+.inputFields {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* height: 50%; */
+}
+
+.inputFields>input{
+  border: 1px solid var(--full-background);
+  border-radius: 1em;
+  padding-left: 5%;
+}
+
+.inputFields>input:hover{
+  border: 1px solid var(--full-background-dark);
+  box-shadow: 5px 5px 1px var(--full-background-dark);
+}
+.inputFields>input:focus{
+  border: 1px solid var(--full-background-dark);
+  outline: none;
 }

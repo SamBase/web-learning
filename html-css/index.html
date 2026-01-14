@@ -1,25 +1,41 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Name form</title>
+
+<head>
+    <title>Login form</title>
     <link rel="stylesheet" href="./style.css" />
-  </head>
-  <body>
+</head>
+
+<body>
+    <div class="description">
+        <h1 class="title">Log In</h1>
+        <p class="content">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec felis tortor, posuere egestas vehicula vitae,
+            lacinia sit amet sem. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+            Etiam quis lorem risus. Aenean id orci lobortis, posuere nibh id, molestie ipsum. Donec condimentum purus
+            non est laoreet pellentesque. Cras pellentesque sapien ac dolor dapibus porta. Etiam dui eros, semper vel
+            blandit eu, laoreet non risus.
+        </p>
+    </div>
     <div class="mainContent">
-      <form action="">
-        <div class="title">Login</div>
+        <form action="">
+            <div class="inputFields">
+                <label for="userName">User Name:</label>
+                <input type="text" id="userName" name="userName" />
+            </div>
+            <div class="inputFields">
+                <label for="password">Password:</label>
+                <input type="text" id="password" name="password" />
+            </div>
 
-        <label for="userName">User Name:</label>
-        <input type="text" id="userName" name="userName" />
-
-        <label for="password">Password:</label>
-        <input type="text" id="password" name="password" />
-
-        <input class="submitButtom" onclick="ButtonHasBeenClicked()" type="button" value="Login" />
-      </form>
-      <div id="emailResult">hello</div>
-      <div id="fetchResult">helloaaaaaa</div>
+            <div class="submitButtom">
+                <input onclick="ButtonHasBeenClicked()" type="button" value="Login" />
+            </div>
+        </form>
+        <!-- <div id="emailResult">hello</div>
+        <div id="fetchResult">helloaaaaaa</div> -->
     </div>
     <script src="./main.js"></script>
-  </body>
+</body>
+
 </html>
