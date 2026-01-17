@@ -1,3 +1,6 @@
+const myBtn = document.getElementById("myBtn");
+myBtn.addEventListener("click", ButtonHasBeenClicked);
+
 async function ButtonHasBeenClicked() {
   let userName = document.getElementById("userName").value;
   let password = document.getElementById("password").value;
@@ -5,29 +8,41 @@ async function ButtonHasBeenClicked() {
   console.log("userName:" + userName)
   console.log("password:" + password)
 
-  validateEmail(userName);
-  fetchFromFakeApi(password);
+  validateUserName(userName);
+  // fetchFromFakeApi(password);
 }
 
-async function validateEmail(userName) {
-  console.log("validateEmail START")
-  // check if it contains @ and .
-  const pattern = /[a-z]+[@][a-z]+\.[a-z]+/;
-  let regext = new RegExp(pattern);
-
-  var result = regext.test(userName);
-
-  if (result == false) {
-    window.alert("Please enter a valid email");
+async function validateUserName(userName) {
+  console.log("validateUserName START");
+  let temp = userName;
+  if (temp.trim().length < 1) {
+    console.error("FAILED");
+    showResult(false,userName);
   } else {
-    showUserName(userName);
+    console.log("SUCCESS");
+    showResult(true,userName);
   }
-  console.log("validateEmail END")
+
+  console.log("validateUserName END");
 }
 
-function showUserName(userName) {
-  let showDiv = document.querySelector("#emailResult");
-  showDiv.innerHTML = userName + ",just tried to log in";
+function showResult(success, userName) {
+  console.log("showResult START");
+  let showDiv = document.querySelector("#result");
+
+  // reset state
+  showDiv.classList.remove("success", "error");
+
+  let message = ""
+  if (success == true) {
+    message = userName + ",just tried to log in";
+    showDiv.classList.add("success");
+  } else {
+    message = "Failed to login";
+    showDiv.classList.add("error");
+  }
+  showDiv.textContent = message;
+  console.log("showResult END");
 }
 
 async function fetchFromFakeApi(number) {

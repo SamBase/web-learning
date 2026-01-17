@@ -42,6 +42,7 @@ body {
 
 .mainContent {
   grid-area: logInCard;
+  flex-direction: column;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -93,4 +94,13 @@ form {
 .inputFields>input:focus{
   border: 1px solid var(--full-background-dark);
   outline: none;
+}
+
+.error{
+  color: red;
+  background-color: grey;
+}
+.success{
+  color: green;
+  background-color: white;
 }
