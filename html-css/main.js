@@ -1,5 +1,15 @@
+//todo
+// can toggle have 1 or more css
+
 const myBtn = document.getElementById("myBtn");
+const userNameTextBox = document.getElementById("userName");
+console.log("userNameTextBox:" + userNameTextBox.outerHTML);
+
 myBtn.addEventListener("click", ButtonHasBeenClicked);
+userNameTextBox.addEventListener("input", (event) => {
+  validateInput(event);
+  toggleResultMessage();
+});
 
 async function ButtonHasBeenClicked() {
   let userName = document.getElementById("userName").value;
@@ -17,10 +27,10 @@ async function validateUserName(userName) {
   let temp = userName;
   if (temp.trim().length < 1) {
     console.error("FAILED");
-    showResult(false,userName);
+    showResult(false, userName);
   } else {
     console.log("SUCCESS");
-    showResult(true,userName);
+    showResult(true, userName);
   }
 
   console.log("validateUserName END");
@@ -29,6 +39,7 @@ async function validateUserName(userName) {
 function showResult(success, userName) {
   console.log("showResult START");
   let showDiv = document.querySelector("#result");
+  showDiv.style.display = 'block';
 
   // reset state
   showDiv.classList.remove("success", "error");
@@ -75,4 +86,24 @@ async function fetchFromFakeApi(number) {
       console.error(err);
     });
   console.log("fetchFromFakeApi END")
+}
+
+function validateInput(event) {
+  console.log("validateInput --START");
+  let inputValue = event.target.value;
+
+  console.log("event.target.outerHTML" + event.target.outerHTML);
+
+  if (inputValue.length < 1) {
+    event.target.classList.add("invalidInputBox");
+  } else {
+    event.target.classList.remove("invalidInputBox");
+  }
+  console.log("classList:" + event.target.classList);
+  console.log("validateInput --END");
+}
+
+function toggleResultMessage() {
+  const showDiv = document.querySelector("#result");
+  showDiv.style.display = 'none';
 }

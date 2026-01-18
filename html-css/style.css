@@ -13,7 +13,8 @@
   --card-background: hsl(0, 0%, 100%);
   --card-shadow: hsl(0, 0%, 0%);
   --submit-button: rgb(87, 117, 240);
-
+  --error: red;
+  --success: green;
 }
 
 body {
@@ -97,10 +98,14 @@ form {
 }
 
 .error{
-  color: red;
+  color: var(--error);
   background-color: grey;
 }
 .success{
-  color: green;
+  color: var(--success);
   background-color: white;
+}
+
+.inputFields > input.invalidInputBox{
+  border: 1px solid var(--error);
 }
