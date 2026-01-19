@@ -1,11 +1,16 @@
 //todo
 // can toggle have 1 or more css
+// what is an API video - if extra time
+// read https://www.geeksforgeeks.org/javascript/javascript-fetch-method/
+// 
 
 const myBtn = document.getElementById("myBtn");
 const userNameTextBox = document.getElementById("userName");
-console.log("userNameTextBox:" + userNameTextBox.outerHTML);
 
-myBtn.addEventListener("click", ButtonHasBeenClicked);
+// myBtn.addEventListener("click", () =>{ButtonHasBeenClicked();
+//   tryToLogIn();
+// });
+myBtn.addEventListener("click", tryToLogIn);
 userNameTextBox.addEventListener("input", (event) => {
   validateInput(event);
   toggleResultMessage();
@@ -89,21 +94,40 @@ async function fetchFromFakeApi(number) {
 }
 
 function validateInput(event) {
-  console.log("validateInput --START");
   let inputValue = event.target.value;
-
-  console.log("event.target.outerHTML" + event.target.outerHTML);
 
   if (inputValue.length < 1) {
     event.target.classList.add("invalidInputBox");
   } else {
     event.target.classList.remove("invalidInputBox");
   }
-  console.log("classList:" + event.target.classList);
-  console.log("validateInput --END");
 }
 
 function toggleResultMessage() {
   const showDiv = document.querySelector("#result");
   showDiv.style.display = 'none';
+}
+
+async function tryToLogIn() {
+  console.log("tryToLogIn --START");
+  const htmlElement = document.getElementById("logInResult");
+  try {
+    htmlElement.textContent = "Loading...";
+    myBtn.disabled = true;
+
+    const response = await fetch('https://jsonplaceholder.typicode.com/posts/1');
+
+    console.log(response);
+    if (response.ok) {
+      htmlElement.textContent = "Login Success";
+    } else {
+      htmlElement.textContent = "Login Failed";
+    }
+  } catch (error) {
+    console.log("Error occured woops:" + error);
+    htmlElement.textContent = error;
+  } finally {
+    myBtn.disabled = false;
+  }
+  console.log("tryToLogIn --END");
 }
