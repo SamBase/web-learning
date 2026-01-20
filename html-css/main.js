@@ -11,11 +11,9 @@ const passwordTextBox = document.getElementById("password");
 myBtn.addEventListener("click", tryToLogIn);
 userNameTextBox.addEventListener("input", (event) => {
   validateInput(event);
-  toggleResultMessage();
 });
 passwordTextBox.addEventListener("input", (event) => {
   validateInput(event);
-  toggleResultMessage();
 });
 
 function validateInput(event) {
@@ -49,11 +47,6 @@ function validateInput(event) {
 }
 
 function isInputValid(inputValue) { return (inputValue != null && inputValue.trim().length > 0) }
-
-function toggleResultMessage() {
-  const showDiv = document.querySelector("#result");
-  showDiv.style.display = 'none';
-}
 
 async function tryToLogIn() {
   console.log("tryToLogIn --START");
