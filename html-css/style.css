@@ -82,17 +82,16 @@ form {
   /* height: 50%; */
 }
 
-.inputFields>input{
+.inputFields input{
   border: 1px solid var(--full-background);
   border-radius: 1em;
-  padding-left: 5%;
 }
 
-.inputFields>input:hover{
+.inputFields input:hover{
   border: 1px solid var(--full-background-dark);
   box-shadow: 5px 5px 1px var(--full-background-dark);
 }
-.inputFields>input:focus{
+.inputFields input:focus{
   border: 1px solid var(--full-background-dark);
   outline: none;
 }
@@ -106,6 +105,15 @@ form {
   background-color: white;
 }
 
-.inputFields > input.invalidInputBox{
+.inputFields  input.invalidInputBox{
   border: 1px solid var(--error);
+}
+
+.inputFieldErrorMessage{
+  font-size: 50%;
+  color: var(--error);
+  display: none;
+}
+.inputFieldErrorMessage.visible {
+  display: block;
 }

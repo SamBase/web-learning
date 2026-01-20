@@ -21,21 +21,24 @@
         <form action="">
             <div class="inputFields">
                 <label for="userName">User Name:</label>
-                <input type="text" id="userName" autocomplete="Enter user Name" name="userName" />
+                <div>
+                    <input type="text" id="userName" autocomplete="Enter user Name" name="userName" />
+                    <div id="userNameInputFieldErrorMessage" class ="inputFieldErrorMessage">*UserName cannot be empty</div>
+                </div>
             </div>
             <div class="inputFields">
                 <label for="password">Password:</label>
-                <input type="text" id="password" name="password" />
+                <div>
+                    <input type="password" id="password" name="password" />
+                    <div id="passwordInputFieldErrorMessage" class ="inputFieldErrorMessage">*Password cannot be empty</div>
+                </div>
             </div>
 
             <div class="submitButtom">
                 <input id="myBtn" type="button" value="Login" />
             </div>
+            <div id="logInResult"></div>
         </form>
-        <div id="result"></div>
-        <div id="logInResult"></div>
-        <!-- <div id="emailResult">hello</div>
-        <div id="fetchResult">helloaaaaaa</div> -->
     </div>
     <script src="./main.js"></script>
 </body>

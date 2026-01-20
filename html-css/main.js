@@ -6,102 +6,49 @@
 
 const myBtn = document.getElementById("myBtn");
 const userNameTextBox = document.getElementById("userName");
+const passwordTextBox = document.getElementById("password");
 
-// myBtn.addEventListener("click", () =>{ButtonHasBeenClicked();
-//   tryToLogIn();
-// });
 myBtn.addEventListener("click", tryToLogIn);
 userNameTextBox.addEventListener("input", (event) => {
   validateInput(event);
   toggleResultMessage();
 });
-
-async function ButtonHasBeenClicked() {
-  let userName = document.getElementById("userName").value;
-  let password = document.getElementById("password").value;
-
-  console.log("userName:" + userName)
-  console.log("password:" + password)
-
-  validateUserName(userName);
-  // fetchFromFakeApi(password);
-}
-
-async function validateUserName(userName) {
-  console.log("validateUserName START");
-  let temp = userName;
-  if (temp.trim().length < 1) {
-    console.error("FAILED");
-    showResult(false, userName);
-  } else {
-    console.log("SUCCESS");
-    showResult(true, userName);
-  }
-
-  console.log("validateUserName END");
-}
-
-function showResult(success, userName) {
-  console.log("showResult START");
-  let showDiv = document.querySelector("#result");
-  showDiv.style.display = 'block';
-
-  // reset state
-  showDiv.classList.remove("success", "error");
-
-  let message = ""
-  if (success == true) {
-    message = userName + ",just tried to log in";
-    showDiv.classList.add("success");
-  } else {
-    message = "Failed to login";
-    showDiv.classList.add("error");
-  }
-  showDiv.textContent = message;
-  console.log("showResult END");
-}
-
-async function fetchFromFakeApi(number) {
-  console.log("fetchFromFakeApi START")
-  let fetchResultHTML = document.getElementById("fetchResult");
-  // console.log("fetchResultHTML:" + fetchResultHTML.innerHTML);
-
-  fetch('https://jsonplaceholder.typicode.com/todos/' + number)
-    .then(response => {
-      console.log("1st then");
-      console.log("respone is: ");
-      console.log(response);
-
-      if (response.status != 200) {
-        console.error("cannot hit the url");
-      } else {
-        let responseJson = response.json();
-        console.log("responseJson:" + responseJson.then(j => { console.log(JSON.stringify(j)); }));
-        return responseJson;
-      }
-    })
-    .then(json => {
-      console.log("2nd then");
-      console.log(JSON.stringify(json));
-      console.log(JSON.stringify(json, null, 2));
-      console.log("2nd then json");
-      fetchResultHTML.innerHTML = JSON.stringify(json, null, 2);
-    }).catch(err => {
-      console.error("Something went wrong when trying to fetch info from url");
-      console.error(err);
-    });
-  console.log("fetchFromFakeApi END")
-}
+passwordTextBox.addEventListener("input", (event) => {
+  validateInput(event);
+  toggleResultMessage();
+});
 
 function validateInput(event) {
   let inputValue = event.target.value;
+  console.log("ID:" + event.target.id);
 
-  if (inputValue.length < 1) {
-    event.target.classList.add("invalidInputBox");
-  } else {
+  if (isInputValid(inputValue)) {
     event.target.classList.remove("invalidInputBox");
+
+    if (event.target.id == "userName") {
+      const usernameInputErrorMessage = document.getElementById("userNameInputFieldErrorMessage");
+      usernameInputErrorMessage.classList.remove("visible");
+    }
+    if (event.target.id == "password") {
+      const passwordInputFieldErrorMessage = document.getElementById("passwordInputFieldErrorMessage");
+      passwordInputFieldErrorMessage.classList.remove("visible");
+    }
+
+  } else {
+    event.target.classList.add("invalidInputBox");
+
+    if (event.target.id == "userName") {
+      const usernameInputErrorMessage = document.getElementById("userNameInputFieldErrorMessage");
+      usernameInputErrorMessage.classList.add("visible");
+    }
+    if (event.target.id == "password") {
+      const passwordInputFieldErrorMessage = document.getElementById("passwordInputFieldErrorMessage");
+      passwordInputFieldErrorMessage.classList.add("visible");
+    }
   }
 }
+
+function isInputValid(inputValue) { return (inputValue != null && inputValue.trim().length > 0) }
 
 function toggleResultMessage() {
   const showDiv = document.querySelector("#result");
