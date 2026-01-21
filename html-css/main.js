@@ -1,9 +1,3 @@
-//todo
-// can toggle have 1 or more css
-// what is an API video - if extra time
-// read https://www.geeksforgeeks.org/javascript/javascript-fetch-method/
-// 
-
 const myBtn = document.getElementById("myBtn");
 const userNameTextBox = document.getElementById("userName");
 const passwordTextBox = document.getElementById("password");
